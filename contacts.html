@@ -235,7 +235,7 @@ a:hover{color:#7acbff;text-shadow:0 0 25px rgba(74,184,255,.2)}
 <label for="message">Сообщение</label>
 <textarea id="message" name="message" placeholder="Опишите проблему подробно..." required></textarea>
 <button type="submit" class="btn primary">Отправить сообщение</button>
-<p class="form-note" id="formNote">Это форма-заглушка. Сообщение никуда не отправляется.</p>
+<p class="form-note" id="formNote" style="display:none;"></p>
 </form>
 </div>
 
@@ -246,6 +246,7 @@ a:hover{color:#7acbff;text-shadow:0 0 25px rgba(74,184,255,.2)}
   if (form && note) {
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      note.style.display = 'block';
       note.textContent = 'Сообщение отправлено. Спасибо за обращение!';
       note.style.color = '#4ab8ff';
       note.style.fontWeight = '600';
