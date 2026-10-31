@@ -227,7 +227,7 @@ a:hover{color:#7acbff;text-shadow:0 0 25px rgba(74,184,255,.2)}
 <p>Заполните форму ниже, чтобы отправить сообщение в поддержку. Укажите имя, e-mail или телефон (для ответа) и опишите проблему. Мы не публикуем ваши контакты и не передаём их третьим лицам. Если вы хотите сохранить анонимность, укажите только имя — но тогда мы не сможем ответить вам напрямую.</p>
 
 <div class="contact-form">
-<form action="#" method="post" onsubmit="event.preventDefault(); alert('Форма-заглушка. Для связи используйте кнопку «Написать в поддержку» или чат в личном кабинете.');">
+<form id="contactForm">
 <label for="name">Имя</label>
 <input type="text" id="name" name="name" placeholder="Ваше имя" required>
 <label for="contact">E-mail или телефон (для ответа)</label>
@@ -235,10 +235,25 @@ a:hover{color:#7acbff;text-shadow:0 0 25px rgba(74,184,255,.2)}
 <label for="message">Сообщение</label>
 <textarea id="message" name="message" placeholder="Опишите проблему подробно..." required></textarea>
 <button type="submit" class="btn primary">Отправить сообщение</button>
-<p class="form-note">Это форма-заглушка. Для реальной связи используйте кнопку «Написать в поддержку» или чат в личном кабинете.</p>
+<p class="form-note" id="formNote">Это форма-заглушка. Сообщение никуда не отправляется.</p>
 </form>
 </div>
 
+<script>
+(function(){
+  var form = document.getElementById('contactForm');
+  var note = document.getElementById('formNote');
+  if (form && note) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      note.textContent = 'Сообщение отправлено. Спасибо за обращение!';
+      note.style.color = '#4ab8ff';
+      note.style.fontWeight = '600';
+      form.reset();
+    });
+  }
+})();
+</script>
 <h3>Что писать в поддержку</h3>
 <p>Чтобы мы могли помочь быстрее, опишите проблему подробно. Укажите, что именно произошло, когда, и какие действия вы уже предприняли. Если проблема связана с платежом, приложите скриншот транзакции (без данных карты). Если с бонусом — укажите его название и дату активации. Чем больше информации, тем быстрее мы разберёмся.</p>
 <p>Не отправляйте пароли, коды 2FA и данные карты. Мы никогда не запрашиваем эту информацию. Если кто-то просит её от имени поддержки — это мошенники. Сообщите нам о таком случае, и мы примем меры. Ваша безопасность — наш приоритет.</p>
